@@ -1,0 +1,42 @@
+{
+    "name": "vnuswilliams/subscription-kpay",
+    "description": "Driver de paiement KPay (Mobile Money & Cartes) pour vnuswilliams/laravel-subscription",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["laravel", "subscription", "kpay", "mobile money", "payment", "cameroun"],
+    "authors": [
+        {
+            "name": "Vnus Williams"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^11.0|^12.0|^13.0",
+        "illuminate/database": "^11.0|^12.0|^13.0",
+        "illuminate/http": "^11.0|^12.0|^13.0",
+        "vnuswilliams/laravel-subscription": "^1.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0|^10.0",
+        "phpunit/phpunit": "^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vnuswilliams\\SubscriptionKpay\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Vnuswilliams\\SubscriptionKpay\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Vnuswilliams\\SubscriptionKpay\\SubscriptionKpayServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
