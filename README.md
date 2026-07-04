@@ -296,5 +296,4 @@ Le package crée une seule table, indépendante du schéma du core :
 
 ## Licence
 
-Ce package est un logiciel à code source ouvert sous licence [MIT](LICENSE.md).#   s u b s c r i p t i o n - k p a y  
- 
+Ce package est un logiciel à code source ouvert sous licence [MIT](LICENSE.md).
