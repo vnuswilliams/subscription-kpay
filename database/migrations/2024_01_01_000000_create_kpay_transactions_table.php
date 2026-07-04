@@ -43,3 +43,4 @@ return new class extends Migration
         Schema::dropIfExists(config('kpay.table_names.kpay_transactions', 'kpay_transactions'));
     }
 };
+
