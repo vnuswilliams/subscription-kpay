@@ -73,7 +73,19 @@ composer require vnuswilliams/subscription-kpay
 Publiez le fichier de configuration :
 
 ```bash
-php artisan vendor:publish --provider="Vnuswilliams\SubscriptionKpay\SubscriptionKpayServiceProvider" --tag=kpay-config
+php artisan kpay:publish-config
+```
+
+La commande `kpay:publish-config` est interactive : si un fichier `config/kpay.php` existe déjà, elle vous demandera confirmation avant de l'écraser. Si vous préférez la méthode non interactive, la commande legacy `vendor:publish` reste disponible :
+
+```bash
+php artisan vendor:publish --provider="Vnuswilliams\SubscriptionKpay\SubscriptionKpayServiceProvider" --tag=kpay-config --force
+```
+
+Si la nouvelle commande artisan n'est pas trouvée après installation, exécutez :
+
+```bash
+composer dump-autoload
 ```
 
 Exécutez les migrations. Le package crée **une seule table**, `kpay_transactions`, sans toucher au schéma du core :

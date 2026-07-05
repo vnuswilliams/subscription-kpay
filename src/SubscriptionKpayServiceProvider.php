@@ -11,6 +11,7 @@ use Vnuswilliams\SubscriptionKpay\Http\Middleware\EnsureKPaySubscriptionPaid;
 use Vnuswilliams\SubscriptionKpay\Listeners\InitiateKPayPaymentOnSubscriptionCreated;
 use Vnuswilliams\SubscriptionKpay\Services\KPayClient;
 use Vnuswilliams\SubscriptionKpay\Services\KPaySignatureVerifier;
+use Vnuswilliams\SubscriptionKpay\Console\PublishKpayConfig;
 
 class SubscriptionKpayServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,12 @@ class SubscriptionKpayServiceProvider extends ServiceProvider
             webhookSecret: (string) config('kpay.webhook_secret'),
             returnSecret: (string) config('kpay.return_secret'),
         ));
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                PublishKpayConfig::class,
+            ]);
+        }
     }
 
     public function boot(): void
