@@ -31,6 +31,21 @@ class SubscriptionKpayServiceProvider extends ServiceProvider
             returnSecret: (string) config('kpay.return_secret'),
         ));
 
+    }
+
+
+    public function boot(): void
+    {
+        $this->publishConfig();
+        $this->pusblishMigrations();
+        $this->registerRoutes();
+        $this->registerMiddleware();
+        $this->registerEventListeners();
+        $this->registerCommands();
+    }
+
+    private function registerCommands(): void
+    {
         if ($this->app->runningInConsole()) {
             $this->commands([
                 PublishKpayConfig::class,
@@ -38,28 +53,23 @@ class SubscriptionKpayServiceProvider extends ServiceProvider
         }
     }
 
-    public function boot(): void
+    private function publishConfig(): void
     {
-        $this->registerPublishing();
-        $this->registerRoutes();
-        $this->registerMiddleware();
-        $this->registerEventListeners();
-    }
-
-    private function registerPublishing(): void
-    {
-        if (! $this->app->runningInConsole()) {
-            return;
-        }
-
         $this->publishes([
             __DIR__.'/../config/kpay.php' => config_path('kpay.php'),
         ], 'kpay-config');
+    }
 
-        $this->publishesMigrations([
+    private function pusblishMigrations(): void
+    {
+        $this->publishes([
             __DIR__.'/../database/migrations' => database_path('migrations'),
         ], 'kpay-migrations');
+
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
+
+   
 
     private function registerRoutes(): void
     {
